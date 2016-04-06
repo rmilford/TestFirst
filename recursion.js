@@ -21,9 +21,11 @@ var fib = function(num){
 };
 
 var type = function (obj) {
-     var str = Object.prototype.toString.call(obj);
-     str = str.slice(8,-1);
-     return str;
+	// this can be condensed to:
+	return Object.prototype.toString.call(obj).slice(8,-1)
+     //var str = Object.prototype.toString.call(obj);
+     //str = str.slice(8,-1);
+     //return str;
 };
 
 
@@ -31,29 +33,32 @@ var type = function (obj) {
 
 var stringify = function(obj){
 
-	if(type(obj)==="Undefined"){
-		return "" + obj;
-	}
+	// for undefined, number, boolean, null, function, each if can be condensed to one statement,
+	// if the value is not a String, Object, or Array, stringify the value (which is what you do in each
+	// statement for undefined, number, boolean, etc:
+	// if(type(obj)==="Undefined"){
+	// 	return "" + obj;
+	// }
 
-	if (type(obj)==="Number") {
-		return "" + obj;
-	}
+	// if (type(obj)==="Number") {
+	// 	return "" + obj;
+	// }
 
 	if (type(obj)==="String"){
 		return '"'+ obj.valueOf() +'"';
 
 	}
-	if(type(obj)==="Boolean"){
-		return "" + obj;
-	}
-	if(type(obj)==="Null"){
-		return "" + obj;
-	}
-	if(type(obj)==="Function"){
-		return "" + obj;
-	}
+	// if(type(obj)==="Boolean"){
+	// 	return "" + obj;
+	// }
+	// if(type(obj)==="Null"){
+	// 	return "" + obj;
+	// }
+	// if(type(obj)==="Function"){
+	// 	return "" + obj;
+	// }
 	if(type(obj)==="Array"){
-
+		// great use of map!
 		var outPutStr = obj.map(stringify).join(',');
 
 	
@@ -69,6 +74,7 @@ var stringify = function(obj){
 
 	str = str.slice(0, -1);	
     return "{" + str + "}";
-		
 	}
+	
+	return "" + obj;
 };
