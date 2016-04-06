@@ -18,17 +18,22 @@ var Mammal = function(str) {
 var Cat = function(name, color){
 	Mammal.call(this, name)
 	this.color = color;
-
-
-	Cat.prototype.haveBaby = function(color){
-		var obj = new Cat("Baby " + this.name, color);
-		this.offspring.push(obj);
-		return obj;
-	}
 };
+
 
 Cat.prototype = Object.create(Mammal.prototype);
 Cat.prototype.constructor = Cat;
+
+// I suggest moving any prototype assignments outside of the constructor function
+Cat.prototype.haveBaby = function(color){
+	var obj = new Cat("Baby " + this.name, color);
+	this.offspring.push(obj);
+	return obj;
+}
+// on line 31, you replace the existing Cat.prototype object.  Prior to this
+// you assign a haveBaby method on the object (which is then lost when you assign a new object to Cat.prototype on line 31)
+// Cat.prototype = Object.create(Mammal.prototype);
+// Cat.prototype.constructor = Cat;
 
 
 
