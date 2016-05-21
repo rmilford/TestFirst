@@ -1,17 +1,19 @@
 var createCalculator = function () {
 	var calculator = {};
-	calculator.CalculatorValue = 0;
+	// syntax improvement: follow the convention of "camelCase"
+	// ex: calculator.calculatorValue = 0;
+	calculator.calculatorValue = 0;
 
 	calculator.value = function () {
-		return this.CalculatorValue;
+		return this.calculatorValue;
 	};
 
 	calculator.add = function (num) {
-		this.CalculatorValue += num;
+		this.calculatorValue += num;
 	};
 	
 	calculator.subtract = function (num) {
-		this.CalculatorValue -= num;
+		this.calculatorValue -= num;
 	};
 
 	return calculator;
